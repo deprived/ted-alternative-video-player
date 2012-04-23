@@ -21,8 +21,18 @@
 		var x;
 		//alert(meta_tags.length);
 		for (x in meta_tags) {
-			if (meta_tags[x].getAttribute('property') == "og:video") {
+			try {
+			if (meta_tags[x].property == "og:video") {
 				ted_vid = meta_tags[x].content;
+			}
+			catch (e) {
+				try {
+					if (meta_tags[x].getAttribute('property') == "og:video") {
+						ted_vid = meta_tags[x].content;
+					}
+				catch (e) {
+					alert("Ted.com better video player does not currently support your browser, my bad.");
+				}
 			}
 		}
     }
