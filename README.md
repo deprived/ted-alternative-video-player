@@ -3,7 +3,7 @@ Ted Alternative Video Player
 
 Install
 -------
-Just go ahead and [install it](https://github.com/downloads/deprived/ted-alternative-video-player/93984.user.js).
+Just go ahead and [install it](https://github.com/downloads/deprived/ted-alternative-video-player/93984.user.js). FF Support only.
 
 About
 -----
