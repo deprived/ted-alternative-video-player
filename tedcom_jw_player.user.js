@@ -9,25 +9,27 @@
 
 (function(){
 
-    var ted;
+    var ted_player;
     var ted_counter;
+    var ted_vid;
 
     /**
      * Load the ted videos into the main ted variable
      */
-    var loadTedVideos = function(){
-        var ted_video_reg = /(hs|ms|ls)=(|mp4\:)(talk.*?\.(mp4|flv))/gi;
-
-        var ted_video_regs;
-        for(var i=0; i<3; i++){
-            ted_video_regs = ted_video_reg.exec(ted.flashvars);
-            ted.videos[ted_video_regs[1]] = ted_video_regs[3];
-        }
+    var loadMetaTags = function(){
+        var meta_tags = document.getElementsByTagName('meta');
+		var x;
+		//alert(meta_tags.length);
+		for (x in meta_tags) {
+			if (meta_tags[x].getAttribute('property') == "og:video") {
+				ted_vid = meta_tags[x].content;
+			}
+		}
     }
 
     var addVideo = function(){
 
-        var flashvars = "file=http://video.ted.com/" + ted.videos.hs + "&autostart=true&provider=video";
+        var flashvars = "file=" + ted_vid + "&autostart=true&provider=video";
         var width = "100%";
         var heigth = "360";
 
@@ -42,24 +44,15 @@
 
         var flashdiv = document.createElement("div");
         flashdiv.innerHTML = flashobject;
-        ted.player.parentNode.replaceChild(flashdiv, ted.player);
+        ted_player.parentNode.replaceChild(flashdiv, ted_player);
     }
 
     /**
      * Load the main ted variable
      */
     var loadTed = function(){
-        // Main TED object
-        ted = {
-            // Get the flash player object
-            player: document.getElementById("streamingPlayerSWF"),
-            // Get the flash vars
-            // document.querySelectorAll('param[name="flashvars"]')[0].value doesn't work
-            flashvars: document.querySelectorAll('param[name="flashvars"]')[0].value,
-            videos: {}
-        };
-
-        loadTedVideos();
+		ted_player = document.getElementById("streamingPlayerSWF");
+        loadMetaTags();
         addVideo();
     };
 
