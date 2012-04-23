@@ -22,20 +22,18 @@
 		//alert(meta_tags.length);
 		for (x in meta_tags) {
 			try {
-				if (meta_tags[x].property == "og:video") {
+				if (typeof meta_tags[x].property !== "undefined" && meta_tags[x].property == "og:video") {
 					ted_vid = meta_tags[x].content;
 				}
-			} catch (e) {
-				try {
-					if (meta_tags[x].getAttribute('property') == "og:video") {
-						ted_vid = meta_tags[x].content;
-					}
-				} catch (e) {
-					alert("Ted.com better video player does not currently support your browser, my bad.");
-					throw "deprived_out_the_window";
+				if (meta_tags[x].getAttribute('property') == "og:video") {
+					ted_vid = meta_tags[x].content;
 				}
-			}
+			} catch (e) { }
 		}
+		//if (typeof ted_vid === undefined || !(ted_vid)) {
+		//	alert("Ted.com better video player does not currently support your browser, my bad.");
+		//	throw "deprived_out_the_window";
+		//}
     }
 
     var addVideo = function(){
