@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name           Ted.com JW player
-// @version        0.3
-// @namespace      http://denbuzze.com/
+// @name           Ted.com better video player
+// @version        1
+// @namespace      http://reddit.com/r/tedtalks
 // @description    Use an alternative player instead of the default flash player on Ted.
 // @match          http://*.ted.com/talks/*
 // @include        http://*ted.com/talks/*
@@ -11,7 +11,7 @@
 
     var ted_player;
     var ted_counter;
-    var ted_vid;
+	var ted_vid;
 
     /**
      * Load the ted videos into the main ted variable
