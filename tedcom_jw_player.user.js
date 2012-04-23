@@ -32,6 +32,7 @@
 					}
 				} catch (e) {
 					alert("Ted.com better video player does not currently support your browser, my bad.");
+					throw "deprived_out_the_window";
 				}
 			}
 		}
